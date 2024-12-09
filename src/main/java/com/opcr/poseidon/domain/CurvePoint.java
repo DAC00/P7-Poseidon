@@ -1,10 +1,27 @@
 package com.opcr.poseidon.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import lombok.Data;
 
+import java.time.LocalDateTime;
+
+@Data
 @Entity
 @Table(name = "curvepoint")
 public class CurvePoint {
-    // TODO: Map columns in data table CURVEPOINT with corresponding java fields
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
+
+    private Integer curveId;
+
+    private LocalDateTime asOfDate;
+
+    private double term;
+
+    private double value;
+
+    private LocalDateTime creationDate;
+
 }

@@ -1,10 +1,23 @@
 package com.opcr.poseidon.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import lombok.Data;
 
+@Data
 @Entity
 @Table(name = "rating")
 public class Rating {
-    // TODO: Map columns in data table RATING with corresponding java fields
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
+
+    private String moodysRating;
+
+    private String sandPRating;
+
+    private String fitchRating;
+
+    private Integer orderNumber;
+
 }
