@@ -18,22 +18,22 @@ public class RatingService {
         return ratingRepository.findAll();
     }
 
-    public Optional<Rating> getRatingById(Integer idRating) {
-        return ratingRepository.findById(idRating);
+    public Optional<Rating> getRatingById(Integer ratingId) {
+        return ratingRepository.findById(ratingId);
     }
 
     public void saveRating(Rating ratingToSave) {
         ratingRepository.save(ratingToSave);
     }
 
-    public void updateRatingById(Integer idRating, Rating ratingUpdated) {
-        Optional<Rating> oldRating = getRatingById(idRating);
-        if (oldRating.isPresent() && idRating.equals(ratingUpdated.getId())) {
+    public void updateRatingById(Integer ratingId, Rating ratingUpdated) {
+        Optional<Rating> oldRating = getRatingById(ratingId);
+        if (oldRating.isPresent() && ratingId.equals(ratingUpdated.getId())) {
             ratingRepository.save(ratingUpdated);
         }
     }
 
-    public void deleteRatingById(Integer idRating) {
-        ratingRepository.deleteById(idRating);
+    public void deleteRatingById(Integer ratingId) {
+        ratingRepository.deleteById(ratingId);
     }
 }

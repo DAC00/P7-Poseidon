@@ -18,22 +18,22 @@ public class RuleNameService {
         return ruleNameRepository.findAll();
     }
 
-    public Optional<RuleName> getRuleNameById(Integer id) {
-        return ruleNameRepository.findById(id);
+    public Optional<RuleName> getRuleNameById(Integer ruleNameId) {
+        return ruleNameRepository.findById(ruleNameId);
     }
 
     public void saveRuleName(RuleName ruleNameToSave) {
         ruleNameRepository.save(ruleNameToSave);
     }
 
-    public void updateRuleNameById(Integer idRuleName, RuleName ruleNameUpdated) {
-        Optional<RuleName> oldRuleName = getRuleNameById(idRuleName);
-        if (oldRuleName.isPresent() && idRuleName.equals(ruleNameUpdated.getId())) {
+    public void updateRuleNameById(Integer ruleNameId, RuleName ruleNameUpdated) {
+        Optional<RuleName> oldRuleName = getRuleNameById(ruleNameId);
+        if (oldRuleName.isPresent() && ruleNameId.equals(ruleNameUpdated.getId())) {
             ruleNameRepository.save(ruleNameUpdated);
         }
     }
 
-    public void deleteRuleNameById(Integer idRuleName) {
-        ruleNameRepository.deleteById(idRuleName);
+    public void deleteRuleNameById(Integer ruleNameId) {
+        ruleNameRepository.deleteById(ruleNameId);
     }
 }
