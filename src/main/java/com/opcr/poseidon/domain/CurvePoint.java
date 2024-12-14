@@ -1,6 +1,7 @@
 package com.opcr.poseidon.domain;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -18,8 +19,10 @@ public class CurvePoint {
 
     private LocalDateTime asOfDate;
 
+    @NotBlank(message = "term is mandatory.")
     private double term;
 
+    @NotBlank(message = "value is mandatory.")
     private double value;
 
     private LocalDateTime creationDate;
