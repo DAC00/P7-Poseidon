@@ -6,6 +6,7 @@ import jakarta.validation.Valid;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -23,7 +24,8 @@ public class BidListController {
     private static final Logger logger = LogManager.getLogger(BidListController.class);
 
     @RequestMapping("/bidList/list")
-    public String home(Model model) {
+    public String home(Model model, Authentication authentication) {
+        model.addAttribute("userName", authentication.getName());
         model.addAttribute("bidLists", bidListService.getBidLists());
         return "bidList/list";
     }
