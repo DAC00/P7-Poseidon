@@ -1,10 +1,11 @@
 package com.opcr.poseidon.domain;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
-import java.util.List;
+import java.util.Collections;
 
 public class PoseidonUserSecurity implements UserDetails {
 
@@ -16,7 +17,7 @@ public class PoseidonUserSecurity implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of();
+        return Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + user.getRole()));
     }
 
     @Override

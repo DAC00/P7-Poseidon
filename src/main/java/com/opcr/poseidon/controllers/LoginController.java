@@ -3,7 +3,9 @@ package com.opcr.poseidon.controllers;
 
 import com.opcr.poseidon.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -28,12 +30,10 @@ public class LoginController {
         return mav;
     }
 
-    @GetMapping("error")
-    public ModelAndView error() {
-        ModelAndView mav = new ModelAndView();
-        String errorMessage = "You are not authorized for the requested data.";
-        mav.addObject("errorMsg", errorMessage);
-        mav.setViewName("403");
-        return mav;
+    @GetMapping("403")
+    public String error(Model model, Authentication authentication) {
+        model.addAttribute("userName", authentication.getName());
+        model.addAttribute("errorMsg", "You are not authorized for the requested data.");
+        return "/403";
     }
 }

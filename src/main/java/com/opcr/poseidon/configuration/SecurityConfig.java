@@ -21,7 +21,12 @@ public class SecurityConfig {
                         (authorize -> authorize
                                 .requestMatchers("/", "login").permitAll()
                                 .requestMatchers("/css/**").permitAll()
+                                .requestMatchers("/user/**").hasRole("ADMIN")
                                 .anyRequest().authenticated())
+
+                .exceptionHandling
+                        (exceptionHandling -> exceptionHandling
+                                .accessDeniedPage("/403"))
 
                 .formLogin
                         (formLogin -> formLogin.loginPage("/login")
