@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.Optional;
+
 @Controller
 public class RatingController {
 
@@ -47,8 +49,12 @@ public class RatingController {
 
     @GetMapping("/rating/update/{id}")
     public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
-        model.addAttribute("rating", ratingService.getRatingById(id));
-        return "rating/update";
+        Optional<Rating> rating = ratingService.getRatingById(id);
+        if (rating.isPresent()) {
+            model.addAttribute("rating", rating.get());
+            return "rating/update";
+        }
+        return "redirect:/rating/list";
     }
 
     @PostMapping("/rating/update/{id}")

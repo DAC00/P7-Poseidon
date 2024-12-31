@@ -50,7 +50,7 @@ public class UserController {
         Optional<User> user = userService.getUser(id);
         if (user.isPresent()) {
             user.get().setPassword("");
-            model.addAttribute("user", user);
+            model.addAttribute("user", user.get());
             return "user/update";
         }
         return "redirect:/user/list";

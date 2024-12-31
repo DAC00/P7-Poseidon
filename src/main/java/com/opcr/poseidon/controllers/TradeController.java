@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.Optional;
+
 @Controller
 public class TradeController {
 
@@ -39,7 +41,7 @@ public class TradeController {
     public String validate(@Valid Trade trade, BindingResult result, Model model) {
         if (!result.hasErrors()) {
             tradeService.saveTrade(trade);
-            logger.debug("CREATE : Trade %s".formatted(model));
+            logger.debug("CREATE : Trade %s".formatted(trade));
             return "redirect:/trade/list";
         }
         return "trade/add";
@@ -47,8 +49,12 @@ public class TradeController {
 
     @GetMapping("/trade/update/{id}")
     public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
-        model.addAttribute("trade", tradeService.getTradeById(id));
-        return "trade/update";
+        Optional<Trade> trade = tradeService.getTradeById(id);
+        if (trade.isPresent()) {
+            model.addAttribute("trade", trade.get());
+            return "trade/update";
+        }
+        return "redirect:/trade/list";
     }
 
     @PostMapping("/trade/update/{id}")

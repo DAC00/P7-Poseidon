@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.Optional;
+
 @Controller
 public class RuleNameController {
 
@@ -47,8 +49,12 @@ public class RuleNameController {
 
     @GetMapping("/ruleName/update/{id}")
     public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
-        model.addAttribute("ruleName", ruleNameService.getRuleNameById(id));
-        return "ruleName/update";
+        Optional<RuleName> ruleName = ruleNameService.getRuleNameById(id);
+        if (ruleName.isPresent()) {
+            model.addAttribute("ruleName", ruleName.get());
+            return "ruleName/update";
+        }
+        return "redirect:/ruleName/list";
     }
 
     @PostMapping("/ruleName/update/{id}")
