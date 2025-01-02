@@ -13,22 +13,22 @@ public class RuleName {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @NotBlank(message = "name is mandatory.")
+    @NotBlank(message = "Name is mandatory.")
     private String name;
 
-    @NotBlank(message = "description is mandatory.")
+    @NotBlank(message = "Description is mandatory.")
     private String description;
 
-    @NotBlank(message = "json is mandatory.")
+    @NotBlank(message = "Json is mandatory.")
     private String json;
 
-    @NotBlank(message = "template is mandatory.")
+    @NotBlank(message = "Template is mandatory.")
     private String template;
 
-    @NotBlank(message = "sqlStr is mandatory.")
+    @NotBlank(message = "SQL is mandatory.")
     private String sqlStr;
 
-    @NotBlank(message = "sqlPart is mandatory.")
+    @NotBlank(message = "SQL Part is mandatory.")
     private String sqlPart;
 
 }
