@@ -1,7 +1,7 @@
 package com.opcr.poseidon.domain;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.DecimalMin;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -19,10 +19,10 @@ public class CurvePoint {
 
     private LocalDateTime asOfDate;
 
-    @NotBlank(message = "term is mandatory.")
+    @DecimalMin(value = "0.01", message = "Term must be at least 0.01.")
     private double term;
 
-    @NotBlank(message = "value is mandatory.")
+    @DecimalMin(value = "0.01", message = "Value must be at least 0.01.")
     private double value;
 
     private LocalDateTime creationDate;
