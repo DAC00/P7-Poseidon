@@ -1,6 +1,5 @@
 package com.opcr.poseidon.controllers;
 
-import com.opcr.poseidon.domain.Trade;
 import com.opcr.poseidon.domain.User;
 import com.opcr.poseidon.services.UserService;
 import org.junit.jupiter.api.Test;
