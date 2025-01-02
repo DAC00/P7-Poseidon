@@ -1,8 +1,8 @@
 package com.opcr.poseidon.domain;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Positive;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -17,15 +17,14 @@ public class Trade {
     private Integer id;
 
     @Column(nullable = false)
-    @NotBlank(message = "account is mandatory.")
+    @NotBlank(message = "Account is mandatory.")
     private String account;
 
     @Column(nullable = false)
-    @NotBlank(message = "type is mandatory.")
+    @NotBlank(message = "Type is mandatory.")
     private String type;
 
-    @Positive(message = "buyQuantity must be positive.")
-    @NotBlank(message = "buyQuantity is mandatory.")
+    @DecimalMin(value = "0.01", message = "BuyQuantity must be at least 0.01.")
     private double buyQuantity;
 
     private double sellQuantity;
