@@ -24,7 +24,7 @@ public class BidList {
     @NotBlank(message = "Type is mandatory.")
     private String type;
 
-    @DecimalMin(value = "0.0", message = "bidQuantity is mandatory.")
+    @DecimalMin(value = "0.01", message = "Bid Quantity must be at least 0.01.")
     private double bidQuantity;
 
     private double askQuantity;
