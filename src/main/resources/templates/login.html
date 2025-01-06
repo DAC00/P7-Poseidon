@@ -1,19 +1,58 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title> Spring Boot </title>
-    <link rel="stylesheet" href="/css/styles.css"/>
-</head>
-<head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .login-container {
+            display: inline-block;
+            text-align: left;
+            padding: 20px;
+            background-color: #fff;
+        }
+        .login-container h2 {
+            margin-bottom: 15px;
+        }
+        .login-container label {
+            display: inline-block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .login-container input[type="text"],
+        .login-container input[type="password"] {
+            width: 200px;
+            padding: 5px;
+            margin-bottom: 10px;
+            border: 1px solid #000;
+            border-radius: 3px;
+        }
+        .login-container button {
+            width: 80px;
+            padding: 5px;
+            background-color: #e0e0e0;
+            border: 1px solid #000;
+            cursor: pointer;
+        }
+        .login-container button:hover {
+            background-color: #d0d0d0;
+        }
+    </style>
 </head>
 <body>
-<div >
-    <form th:action="@{/login}" method="post">
-        <input type="text" name="username" placeholder="username" required/>
-        <input type="password" name="password" placeholder="password" required/>
-        <input type="submit" value="connect"/>
+<div class="login-container">
+    <h2>Login with Username and Password</h2>
+    <form th:action="@{/login}" method="POST">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" placeholder="username" required><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" placeholder="********" required><br>
+        <button type="submit">Login</button>
     </form>
 </div>
 </body>
