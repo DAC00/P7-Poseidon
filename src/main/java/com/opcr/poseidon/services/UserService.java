@@ -25,10 +25,10 @@ public class UserService {
     }
 
     /**
-     * Get the User with the id : userId.
+     * Get the User with the id userId.
      *
-     * @param userId of the User.
-     * @return User with the id : userId.
+     * @param userId of the User to find.
+     * @return User with the id userId.
      */
     public Optional<User> getUser(Integer userId) {
         return userRepository.findById(userId);
@@ -46,7 +46,7 @@ public class UserService {
     }
 
     /**
-     * Update the User with id : userId.
+     * Update the User with id userId.
      * Hash the password with BCrypt.
      *
      * @param userId      of the User to update.
@@ -60,7 +60,7 @@ public class UserService {
     }
 
     /**
-     * Delete the User with id : userId.
+     * Delete the User with id userId.
      *
      * @param userId of the User to delete.
      */
