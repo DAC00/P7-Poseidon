@@ -14,6 +14,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 public class SecurityConfig {
 
+    /**
+     * Configuration in 4 Parts.
+     * authorizeHttpRequests : block access to the app if not log. Open the /login and / to everyone. To access /user/** the user need to have ADMIN role.
+     * exceptionHandling : for handling error 403 when USER can't access /user/**
+     * formLogin : for the custom login page and redirection if logged.
+     * logout : handling of the logout, end of session and finally the redirection.
+     */
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
@@ -29,7 +36,8 @@ public class SecurityConfig {
                                 .accessDeniedPage("/403"))
 
                 .formLogin
-                        (formLogin -> formLogin.loginPage("/login")
+                        (formLogin -> formLogin
+                                .loginPage("/login")
                                 .loginProcessingUrl("/login")
                                 .defaultSuccessUrl("/bidList/list", true)
                                 .permitAll())
@@ -44,16 +52,31 @@ public class SecurityConfig {
         return http.build();
     }
 
+    /**
+     * Return the BCryptPasswordEncoder for the password hashing.
+     *
+     * @return the BCryptPasswordEncoder.
+     */
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
+    /**
+     * Return a custom UserDetailsService.
+     *
+     * @return the PoseidonUserDetailsService.
+     */
     @Bean
     public PoseidonUserDetailsService userDetailsService() {
         return new PoseidonUserDetailsService();
     }
 
+    /**
+     * DaoAuthenticationProvider is set with the BCryptPasswordEncode and the PoseidonUserDetailsService.
+     *
+     * @return the AuthenticationProvider
+     */
     @Bean
     public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
