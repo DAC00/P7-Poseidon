@@ -18,7 +18,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 
 @WebMvcTest(UserController.class)
-public class UserControllerTest {
+public class UserValidationTest {
 
     @Autowired
     private MockMvc mockMvc;

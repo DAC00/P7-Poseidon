@@ -1,7 +1,7 @@
 package com.opcr.poseidon.controllers;
 
-import com.opcr.poseidon.domain.Trade;
-import com.opcr.poseidon.services.TradeService;
+import com.opcr.poseidon.domain.BidList;
+import com.opcr.poseidon.services.BidListService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -17,70 +17,70 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 
-@WebMvcTest(TradeController.class)
-public class TradeControllerTest {
+@WebMvcTest(BidListController.class)
+public class BidListValidationTest {
 
     @Autowired
     private MockMvc mockMvc;
 
     @MockitoBean
-    private TradeService tradeService;
+    private BidListService bidListService;
 
     @Test
     public void validate() throws Exception {
-        doNothing().when(tradeService).saveTrade(any(Trade.class));
-        mockMvc.perform(post("/trade/validate")
+        doNothing().when(bidListService).saveBidList(any(BidList.class));
+        mockMvc.perform(post("/bidList/validate")
                         .with(csrf())
                         .with(user("user").roles("USER"))
                         .param("account", "account")
                         .param("type", "type")
-                        .param("buyQuantity", "1"))
-                .andExpect(redirectedUrl("/trade/list"));
-        verify(tradeService).saveTrade(any(Trade.class));
+                        .param("bidQuantity", "10"))
+                .andExpect(redirectedUrl("/bidList/list"));
+        verify(bidListService).saveBidList(any(BidList.class));
     }
 
     @Test
     public void whenAccountIsEmptyShowError() throws Exception {
-        mockMvc.perform(post("/trade/validate")
+        mockMvc.perform(post("/bidList/validate")
                         .with(csrf())
                         .with(user("user").roles("USER"))
                         .param("type", "type")
-                        .param("buyQuantity", "1"))
+                        .param("bidQuantity", "10"))
                 .andExpect(content().string(containsString("Account is mandatory.")));
-        verify(tradeService, never()).saveTrade(any(Trade.class));
+        verify(bidListService, never()).saveBidList(any(BidList.class));
     }
 
     @Test
     public void whenTypeIsEmptyShowError() throws Exception {
-        mockMvc.perform(post("/trade/validate")
+        mockMvc.perform(post("/bidList/validate")
                         .with(csrf())
                         .with(user("user").roles("USER"))
                         .param("account", "account")
-                        .param("buyQuantity", "1"))
+                        .param("bidQuantity", "10"))
                 .andExpect(content().string(containsString("Type is mandatory.")));
-        verify(tradeService, never()).saveTrade(any(Trade.class));
+        verify(bidListService, never()).saveBidList(any(BidList.class));
     }
 
     @Test
-    public void whenBuyQuantityIsEmptyShowError() throws Exception {
-        mockMvc.perform(post("/trade/validate")
+    public void whenBidQuantityIsEmptyShowError() throws Exception {
+        mockMvc.perform(post("/bidList/validate")
                         .with(csrf())
                         .with(user("user").roles("USER"))
                         .param("account", "account")
                         .param("type", "type"))
-                .andExpect(content().string(containsString("BuyQuantity must be at least 0.01.")));
-        verify(tradeService, never()).saveTrade(any(Trade.class));
+                .andExpect(content().string(containsString("Bid Quantity must be at least 0.01.")));
+        verify(bidListService, never()).saveBidList(any(BidList.class));
     }
 
     @Test
-    public void whenBuyQuantityIsNegativeShowError() throws Exception {
-        mockMvc.perform(post("/trade/validate")
+    public void whenBidQuantityIsNegativeShowError() throws Exception {
+        mockMvc.perform(post("/bidList/validate")
                         .with(csrf())
                         .with(user("user").roles("USER"))
                         .param("account", "account")
                         .param("type", "type")
-                        .param("buyQuantity", "-10"))
-                .andExpect(content().string(containsString("BuyQuantity must be at least 0.01.")));
-        verify(tradeService, never()).saveTrade(any(Trade.class));
+                        .param("bidQuantity", "-10"))
+                .andExpect(content().string(containsString("Bid Quantity must be at least 0.01.")));
+        verify(bidListService, never()).saveBidList(any(BidList.class));
     }
 }

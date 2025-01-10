@@ -18,7 +18,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 
 @WebMvcTest(RatingController.class)
-public class RatingControllerTest {
+public class RatingValidationTest {
 
     @Autowired
     private MockMvc mockMvc;

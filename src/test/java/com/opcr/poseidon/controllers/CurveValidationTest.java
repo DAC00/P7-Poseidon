@@ -18,7 +18,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 
 @WebMvcTest(CurveController.class)
-public class CurveControllerTest {
+public class CurveValidationTest {
 
     @Autowired
     private MockMvc mockMvc;

@@ -18,7 +18,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 
 @WebMvcTest(RuleNameController.class)
-public class RuleNameControllerTest {
+public class RuleNameValidationTest {
 
     @Autowired
     private MockMvc mockMvc;
