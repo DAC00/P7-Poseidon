@@ -50,7 +50,7 @@ public class CurvePointService {
      */
     public void updateCurvePointById(Integer curvePointId, CurvePoint curvePointUpdated) {
         Optional<CurvePoint> oldCurvePoint = getCurvePointById(curvePointId);
-        if (oldCurvePoint.isPresent() && curvePointId.equals(curvePointUpdated.getCurveId())) {
+        if (oldCurvePoint.isPresent() && curvePointId.equals(curvePointUpdated.getId())) {
             curvePointRepository.save(curvePointUpdated);
         }
     }
