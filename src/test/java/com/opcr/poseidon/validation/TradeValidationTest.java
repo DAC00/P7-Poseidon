@@ -1,5 +1,6 @@
-package com.opcr.poseidon.controllers;
+package com.opcr.poseidon.validation;
 
+import com.opcr.poseidon.controllers.TradeController;
 import com.opcr.poseidon.domain.Trade;
 import com.opcr.poseidon.services.TradeService;
 import org.junit.jupiter.api.Test;

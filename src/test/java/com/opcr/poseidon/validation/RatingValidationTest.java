@@ -1,5 +1,6 @@
-package com.opcr.poseidon.controllers;
+package com.opcr.poseidon.validation;
 
+import com.opcr.poseidon.controllers.RatingController;
 import com.opcr.poseidon.domain.Rating;
 import com.opcr.poseidon.services.RatingService;
 import org.junit.jupiter.api.Test;

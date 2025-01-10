@@ -1,5 +1,6 @@
-package com.opcr.poseidon.controllers;
+package com.opcr.poseidon.validation;
 
+import com.opcr.poseidon.controllers.RuleNameController;
 import com.opcr.poseidon.domain.RuleName;
 import com.opcr.poseidon.services.RuleNameService;
 import org.junit.jupiter.api.Test;

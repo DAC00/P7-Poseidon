@@ -1,5 +1,6 @@
-package com.opcr.poseidon.controllers;
+package com.opcr.poseidon.validation;
 
+import com.opcr.poseidon.controllers.CurveController;
 import com.opcr.poseidon.domain.CurvePoint;
 import com.opcr.poseidon.services.CurvePointService;
 import org.junit.jupiter.api.Test;

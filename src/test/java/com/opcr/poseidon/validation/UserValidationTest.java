@@ -1,5 +1,6 @@
-package com.opcr.poseidon.controllers;
+package com.opcr.poseidon.validation;
 
+import com.opcr.poseidon.controllers.UserController;
 import com.opcr.poseidon.domain.User;
 import com.opcr.poseidon.services.UserService;
 import org.junit.jupiter.api.Test;
