@@ -20,21 +20,3 @@ Two scripts below for the database, one for the app and the other one for testin
 
 [Script for testing](sql/p7_poseidon_test_script.sql)
 
-# USER in Database
-There is two users in the database with different role :
-
-USER 1 :
-
-username : admin
-
-password : 123456
-
-role : ADMIN
-
-USER 2 :
-
-username : user
-
-password : 123456
-
-role : USER
