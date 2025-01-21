@@ -41,7 +41,7 @@ public class RatingController {
     public String validate(@Valid Rating rating, BindingResult result, Model model) {
         if (!result.hasErrors()) {
             ratingService.saveRating(rating);
-            logger.debug("CREATE : Rating %s".formatted(model));
+            logger.info("CREATE : Rating %s".formatted(model));
             return "redirect:/rating/list";
         }
         return "rating/add";
@@ -64,7 +64,7 @@ public class RatingController {
             return "rating/update";
         } else {
             ratingService.updateRatingById(id, rating);
-            logger.debug("UPDATE : Rating id %s".formatted(id));
+            logger.info("UPDATE : Rating id %s".formatted(id));
             return "redirect:/rating/list";
         }
     }
@@ -72,7 +72,7 @@ public class RatingController {
     @GetMapping("/rating/delete/{id}")
     public String deleteRating(@PathVariable("id") Integer id, Model model) {
         ratingService.deleteRatingById(id);
-        logger.debug("DELETE : Rating id %s".formatted(id));
+        logger.info("DELETE : Rating id %s".formatted(id));
         return "redirect:/rating/list";
     }
 }

@@ -3,6 +3,7 @@ package com.opcr.poseidon.controllers;
 import com.opcr.poseidon.domain.User;
 import com.opcr.poseidon.services.UserService;
 import jakarta.validation.Valid;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +40,7 @@ public class UserController {
     public String validate(@Valid User user, BindingResult result) {
         if (!result.hasErrors()) {
             userService.saveUser(user);
-            logger.debug("CREATE : User %s".formatted(user));
+            logger.info("CREATE : User %s".formatted(user));
             return "redirect:/user/list";
         }
         return "user/add";
@@ -63,7 +64,7 @@ public class UserController {
             return "user/update";
         } else {
             userService.updateUserById(id, user);
-            logger.debug("UPDATE : User id %s".formatted(id));
+            logger.info("UPDATE : User id %s".formatted(id));
             return "redirect:/user/list";
         }
     }
@@ -71,7 +72,7 @@ public class UserController {
     @GetMapping("/user/delete/{id}")
     public String deleteUser(@PathVariable("id") Integer id) {
         userService.deleteUser(id);
-        logger.debug("DELETE : User id %s".formatted(id));
+        logger.info("DELETE : User id %s".formatted(id));
         return "redirect:/user/list";
     }
 }

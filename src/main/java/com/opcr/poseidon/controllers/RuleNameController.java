@@ -41,7 +41,7 @@ public class RuleNameController {
     public String validate(@Valid RuleName ruleName, BindingResult result, Model model) {
         if (!result.hasErrors()) {
             ruleNameService.saveRuleName(ruleName);
-            logger.debug("CREATE : RuleName %s".formatted(model));
+            logger.info("CREATE : RuleName %s".formatted(model));
             return "redirect:/ruleName/list";
         }
         return "ruleName/add";
@@ -64,7 +64,7 @@ public class RuleNameController {
             return "ruleName/update";
         } else {
             ruleNameService.updateRuleNameById(id, ruleName);
-            logger.debug("UPDATE : RuleName id %s".formatted(id));
+            logger.info("UPDATE : RuleName id %s".formatted(id));
             return "redirect:/ruleName/list";
         }
     }
@@ -72,7 +72,7 @@ public class RuleNameController {
     @GetMapping("/ruleName/delete/{id}")
     public String deleteRuleName(@PathVariable("id") Integer id, Model model) {
         ruleNameService.deleteRuleNameById(id);
-        logger.debug("DELETE : RuleName id %s".formatted(id));
+        logger.info("DELETE : RuleName id %s".formatted(id));
         return "redirect:/ruleName/list";
     }
 }
