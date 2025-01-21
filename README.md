@@ -14,7 +14,7 @@ DB_USERNAME=username
 DB_PASSWORD=password
 
 # SQL
-Two scripts below for the database, one for the app and the other one for testing.
+Two scripts below for the database, one for the app and the other one for testing. Both are needed.
 
 [Script for the app](sql/p7_poseidon_script.sql)
 
